@@ -23,7 +23,7 @@ management:
                     autotime:
                         enabled: true
 server:
-    port:8089
+    port: 8089
     tomcat:
         mbeanregistry:
             enabled: true

@@ -1,6 +1,8 @@
 package com.northwind.inventory.model;
 
 import javax.persistence.*;
+import java.util.Collections;
+import java.util.List;
 
 @Entity
 @Table(name = "Suppliers")
@@ -34,6 +36,8 @@ public class Supplier
     private String homePage;
     @Column(name = "Version")
     private int version;
+    @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL, orphanRemoval = false)
+    private List<Product> productList;
 
     public Supplier() {
     }
@@ -175,5 +179,17 @@ public class Supplier
                 ", homePage='" + homePage + '\'' +
                 ", version=" + version +
                 '}';
+    }
+    public List<Product> getItems() {
+        return Collections.unmodifiableList(productList);
+    }
+
+    public void addItem(Product products){
+        this.productList.add(products);
+        // packingSlipDetails.setPackingslips(this);
+        products.setSupplier(this);
+    }
+    public void removeItem(Product item) {
+        productList.remove(item);
     }
 }

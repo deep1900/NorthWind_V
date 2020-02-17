@@ -23,11 +23,15 @@ public class Products {
     private boolean published;
     @Column(name="Version")
     private int version;
+    @ManyToOne
+    @MapsId("CategoryID")
+    @JoinColumn(name = "CategoryID", nullable = false)
+    private Catagories catagories;
 
     public Products() {
     }
 
-    public Products(long productId, String productName, int catagoryId, String quantityPerUnit, BigDecimal listPrice, boolean published, int version) {
+    public Products(long productId, String productName, int catagoryId, String quantityPerUnit, BigDecimal listPrice, boolean published, int version, Catagories catagories) {
         this.productId = productId;
         this.productName = productName;
         this.catagoryId = catagoryId;
@@ -35,6 +39,7 @@ public class Products {
         this.listPrice = listPrice;
         this.published = published;
         this.version = version;
+        this.catagories = catagories;
     }
 
     public long getProductId() {
@@ -91,6 +96,14 @@ public class Products {
 
     public void setVersion(int version) {
         this.version = version;
+    }
+
+    public Catagories getCatagories() {
+        return catagories;
+    }
+
+    public void setCatagories(Catagories catagories) {
+        this.catagories = catagories;
     }
 
     @Override

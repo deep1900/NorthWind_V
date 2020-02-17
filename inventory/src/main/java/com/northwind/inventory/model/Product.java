@@ -32,7 +32,10 @@ public class Product
     private String location;
     @Column(name = "Version")
     private int version;
-
+    @ManyToOne
+    @JoinColumn(name = "SupplierID", nullable = false)
+    @MapsId("SupplierID")
+    private Supplier supplier;
     public Product() {
     }
 
@@ -48,6 +51,14 @@ public class Product
         this.discontinued = discontinued;
         this.location = location;
         this.version = version;
+    }
+
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
     }
 
     public long getProductId() {

@@ -2,6 +2,8 @@ package com.northwind.catalog.model;
 
 import javax.persistence.*;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 
 @Entity
@@ -20,6 +22,8 @@ public class Catagories
     private byte[] picture;
     @Column(name="Version")
     private int version;
+    @OneToMany(mappedBy = "catagories", orphanRemoval = true, cascade = CascadeType.ALL)
+    private List<Products> productsList;
 
     public Catagories() {
     }
@@ -70,6 +74,19 @@ public class Catagories
 
     public void setVersion(int version) {
         this.version = version;
+    }
+
+    public List<Products> getItems() {
+        return Collections.unmodifiableList(productsList);
+    }
+
+    public void addItem(Products products){
+        this.productsList.add(products);
+       // packingSlipDetails.setPackingslips(this);
+        products.setCatagories(this);
+    }
+    public void removeItem(Products item) {
+        productsList.remove(item);
     }
 
     @Override
