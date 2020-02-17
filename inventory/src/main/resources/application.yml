@@ -1,0 +1,56 @@
+logging:
+    file: ''
+    level:
+        com:
+            northwind:
+                customerservice: debug
+management:
+    endpoint:
+        health:
+            show-details: always
+    endpoints:
+        web:
+            exposure:
+                include: '*'
+    metrics:
+        export:
+            statsd:
+                host: localhost
+                port: 8125
+        web:
+            server:
+                request:
+                    autotime:
+                        enabled: true
+server:
+    port: 8090
+    tomcat:
+        mbeanregistry:
+            enabled: true
+spring:
+    datasource:
+        password: password
+        url: jdbc:mysql://localhost:3306/inventory-db
+        username: root
+    jpa:
+        hibernate:
+            ddl-auto: update
+            naming:
+                physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL57Dialect
+                dialect.storage_engine: innodb
+                format_sql: true
+                generate_statistics: true
+        show-sql: true
+    rabbitmq:
+        host: 127.0.0.1
+        password: password
+        port: 5672
+        username: admin
+    sleuth:
+        sampler:
+            percentage: 1.0
+    zipkin:
+        base-url: http://localhost:9411/
