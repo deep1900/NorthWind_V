@@ -1,0 +1,15 @@
+version: '3'
+networks:
+  default:
+    external:
+      name: localdev_default
+
+services:
+  order-service:
+    image: customer-service
+    hostname: customer-service
+    container_name: customer-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=localdev
+    ports:
+    - 127.0.0.1:8082:8080

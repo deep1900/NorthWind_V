@@ -14,25 +14,40 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @ComponentScan("com/order/orderservice")
 public class OrderserviceApplication {
-
-	static final String queueName = "orderQueue";
-	public static final  String topicExchangeName ="OrderEvent";
-
-	@Bean
-	Queue queue() {
-		return new Queue(queueName, false);
-	}
+//
+//	static final String queueName = "orderQueue";
+//	static final String secondQueueName= "CatalogQueue";
+//	public static final  String topicExchangeName ="OrderEvent";
 
 
-	@Bean
-	TopicExchange exchange() {
-		return new TopicExchange(topicExchangeName);
-	}
 
-	@Bean
-	Binding binding(Queue queue, TopicExchange exchange){
-		return BindingBuilder.bind(queue).to(exchange).with("orderCreated");
-	}
+//	@Bean
+//	Queue queue2() {
+//		return new Queue(queueName, false);
+//	}
+
+
+
+//	@Bean
+//	Queue queue() {
+//		return new Queue(queueName, false);
+//	}
+//
+//
+//	@Bean
+//	TopicExchange exchange() {
+//		return new TopicExchange(topicExchangeName);
+//	}
+//
+//	@Bean
+//	Binding binding(Queue queue, TopicExchange exchange){
+//		return BindingBuilder.bind(queue).to(exchange).with("orderCreated");
+//	}
+//
+//	@Bean
+//	Binding binding2(Queue queue, TopicExchange exchange){
+//		return BindingBuilder.bind(queue).to(exchange).with("CatalogUpdate");
+//	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(OrderserviceApplication.class, args);

@@ -111,7 +111,7 @@ public class CustomerController {
 
      //   String id1 = String.valueOf(id);
 
-        String URL = "http://localhost:8083/order/histroy";
+        String URL = "http://order-service:8083/order/histroy";
 
         ResponseEntity<Order[]> o = restTemplate.getForEntity(URL+"/"+customerId, Order[].class);
         Order[] order = o.getBody();

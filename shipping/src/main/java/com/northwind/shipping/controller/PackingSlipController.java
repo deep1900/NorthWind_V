@@ -43,7 +43,7 @@ public class PackingSlipController {
         if(packingSlipsOptional.isPresent()){
            long number =  packingSlipsOptional.get().getOrderId();
            String orderid = new String(String.valueOf(number));
-            rabbitTemplate.convertAndSend(topicExchange.getName(),"OrderSipped", orderid);
+            rabbitTemplate.convertAndSend(topicExchange.getName(),"OrderShipped", orderid);
             return "Message Sent to OrderService";
         }
         else {

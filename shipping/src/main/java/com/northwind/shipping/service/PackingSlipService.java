@@ -53,7 +53,7 @@ public class PackingSlipService
         return packingSlipsModels;
     }
 
-    @RabbitListener(queues = "orderQueue")
+    @RabbitListener(queues = "shippingQueue")
     public void notification(String message) throws JsonProcessingException {
      //   ObjectMapper mapper = new ObjectMapper();
         Gson g = new Gson();
